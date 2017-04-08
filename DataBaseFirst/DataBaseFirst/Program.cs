@@ -52,12 +52,17 @@ namespace DataBaseFirst
                 myuser.Password = "password";
 
                 context.MyUsers.Add(myuser);
+                //removing elements
+                var delete_users = from b in context.MyUsers
+                                  where b.Name == "name"
+                                  select b;
+                foreach (var m in delete_users)
+                    context.MyUsers.Remove(m);
+
                 context.SaveChanges();
 
-                
-
             }
-            
+
         }
     }
 }
