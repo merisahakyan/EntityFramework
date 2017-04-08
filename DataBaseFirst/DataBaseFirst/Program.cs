@@ -39,10 +39,25 @@ namespace DataBaseFirst
 
 
             //read data using Entity (DataBase First)
-            var context = new UsersEntities();
-            var users = context.MyUsers.ToList();
-            foreach (var user in users)
-                Console.WriteLine(user.eMail);
+            using (var context = new UsersEntities())
+            {
+                var users = context.MyUsers.ToList();
+                foreach (var user in users)
+                    Console.WriteLine(user.eMail);
+
+                //adding new element
+                MyUser myuser = new MyUser();
+                myuser.Name = "name";
+                myuser.eMail = "email";
+                myuser.Password = "password";
+
+                context.MyUsers.Add(myuser);
+                context.SaveChanges();
+
+                
+
+            }
+            
         }
     }
 }
