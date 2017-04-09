@@ -66,6 +66,17 @@ namespace DataBaseFirst
 
                 context.SaveChanges();
 
+                // some needful commands in SQL
+                //
+                // for adding new element
+                // insert into Table_Name(Column_1, Column_2, ...) Values('value_1', 'value_2', ...)
+                //
+                // for deleting element(s)
+                // delete from Table_Name where Column_name='value'
+                //
+                // to change something with given value
+                // update Table_Name set column_name='new value' where column_name='given_value' (or another_column_name='value')
+
             }
 
         }
