@@ -38,9 +38,10 @@ namespace DataBaseFirst
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 
-            //read data using Entity (DataBase First)
+            //Entity (DataBase First)
             using (var context = new UsersEntities())
             {
+                //read data using Entity 
                 var users = context.MyUsers.ToList();
                 foreach (var user in users)
                     Console.WriteLine(user.eMail);
@@ -52,12 +53,16 @@ namespace DataBaseFirst
                 myuser.Password = "password";
 
                 context.MyUsers.Add(myuser);
+
                 //removing elements
                 var delete_users = from b in context.MyUsers
-                                  where b.Name == "name"
-                                  select b;
+                                   where b.Name == "name"
+                                   select b;
                 foreach (var m in delete_users)
                     context.MyUsers.Remove(m);
+
+                //you can also write SQL command and execute like this
+                context.Database.ExecuteSqlCommand("insert into MyUsers(Name, eMail, Password) Values('name', 'email', 'password')");
 
                 context.SaveChanges();
 
