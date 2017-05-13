@@ -15,7 +15,7 @@ namespace ConnectionStrings
             constr.DataSource = ".\\SQLEXPRESS";
             constr.InitialCatalog = "Users";
             constr.IntegratedSecurity = true;
-
+            Console.WriteLine(constr.ConnectionString);
             using (var connection = new SqlConnection())
             {
                 connection.ConnectionString = constr.ConnectionString;
