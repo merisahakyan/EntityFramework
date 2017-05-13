@@ -15,15 +15,20 @@ namespace ConnectionStrings
             constr.DataSource = ".\\SQLEXPRESS";
             constr.InitialCatalog = "Users";
             constr.IntegratedSecurity = true;
-            
+
             using (var connection = new SqlConnection())
             {
                 connection.ConnectionString = constr.ConnectionString;
                 connection.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM MyUsers",connection);
+                SqlCommand command = new SqlCommand("SELECT * FROM MyUsers", connection);
                 SqlDataReader reader = command.ExecuteReader();
-                while(reader.Read())
-                    Console.WriteLine(reader.FieldCount);
+                int i = 0;
+                while (reader.Read())
+                {
+
+                    for (i = 0; i < reader.FieldCount; i++)
+                        Console.WriteLine(reader.GetName(i) + ":" + reader[reader.GetName(i)]);
+                }
             }
             Console.ReadLine();
         }
