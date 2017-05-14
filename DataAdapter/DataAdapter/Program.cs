@@ -26,6 +26,10 @@ namespace DataAdapter1
                 }
                 Console.WriteLine();
             }
+            command.CommandText = "update MyUsers set Name='Mary' where Name='Meri' ";
+            ad.SelectCommand = command;
+            ad.Fill(set);
+
         }
     }
 }
